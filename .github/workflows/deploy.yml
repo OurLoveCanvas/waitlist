@@ -18,7 +18,7 @@ jobs:
       - name: Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no ekin@89.167.87.55 << 'EOF'
-            cd /srv/waitlist
+            cd /srv/waitlists/OurLoveCanvas
             git pull origin main
             docker compose -f docker-compose.waitlist.yml up -d --build
             docker image prune -f

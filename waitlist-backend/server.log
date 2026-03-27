@@ -1,0 +1,148 @@
+
+> waitlist-backend@1.0.0 start:dev
+> nest start --watch
+
+[2J[3J[H[[90m7:50:22 PM[0m] Starting compilation in watch mode...
+
+[[90m7:50:28 PM[0m] Found 0 errors. Watching for file changes.
+
+(node:35636) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:56 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:56 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +16ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:57 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrismaModule dependencies initialized[39m[38;5;3m +716ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:57 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +3ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:57 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWaitlistModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:57 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:58 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWaitlistController {/waitlist}:[39m[38;5;3m +1091ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:58 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/waitlist, POST} route[39m[38;5;3m +3ms[39m
+[32m[Nest] 49204  - [39m03/27/2026, 7:50:58 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +20ms[39m
+Waitlist backend running on http://localhost:3001
+[2J[3J[H[[90m10:56:07 PM[0m] File change detected. Starting incremental compilation...
+
+[2J[3J[H[[90m10:56:22 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:23 PM[0m] Found 0 errors. Watching for file changes.
+
+[2J[3J[H[[90m10:56:24 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:24 PM[0m] Found 0 errors. Watching for file changes.
+
+[2J[3J[H[[90m10:56:25 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:25 PM[0m] Found 0 errors. Watching for file changes.
+
+[2J[3J[H[[90m10:56:27 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:27 PM[0m] Found 0 errors. Watching for file changes.
+
+node:internal/modules/cjs/loader:1423
+  throw err;
+  ^
+
+Error: Cannot find module './app.module'
+Require stack:
+- D:\Code\OurLoveCanvas\waitlist-backend\dist\main.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.require (node:internal/modules/cjs/loader:1503:12)
+    at require (node:internal/modules/helpers:152:16)
+    at Object.<anonymous> (D:\Code\OurLoveCanvas\waitlist-backend\src\main.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1760:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'D:\\Code\\OurLoveCanvas\\waitlist-backend\\dist\\main.js' ]
+}
+
+Node.js v24.10.0
+[2J[3J[H[[90m10:56:33 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:34 PM[0m] Found 0 errors. Watching for file changes.
+
+node:internal/modules/cjs/loader:1423
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\Code\OurLoveCanvas\waitlist-backend\dist\main'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.10.0
+[2J[3J[H[[90m10:56:35 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:35 PM[0m] Found 0 errors. Watching for file changes.
+
+node:internal/modules/cjs/loader:1423
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\Code\OurLoveCanvas\waitlist-backend\dist\main'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.10.0
+[2J[3J[H[[90m10:56:38 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:38 PM[0m] Found 0 errors. Watching for file changes.
+
+node:internal/modules/cjs/loader:1423
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\Code\OurLoveCanvas\waitlist-backend\dist\main'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.10.0
+[2J[3J[H[[90m10:56:39 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m10:56:39 PM[0m] Found 0 errors. Watching for file changes.
+
+node:internal/modules/cjs/loader:1423
+  throw err;
+  ^
+
+Error: Cannot find module 'D:\Code\OurLoveCanvas\waitlist-backend\dist\main'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
+    at Module._load (node:internal/modules/cjs/loader:1226:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v24.10.0

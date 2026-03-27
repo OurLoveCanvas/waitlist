@@ -1,0 +1,23 @@
+services:
+  ourlovecanvas-waitlist:
+    image: mysql:8.0
+    container_name: ourlovecanvas-waitlist
+    restart: unless-stopped
+    ports:
+      - '3307:3306'
+    command: --default-time-zone='+00:00'
+    environment:
+      MYSQL_ROOT_PASSWORD: my-root-password
+      MYSQL_DATABASE: waitlist
+      MYSQL_USER: waitlist-user
+      MYSQL_PASSWORD: waitlist-password
+    volumes:
+      - waitlist_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  waitlist_mysql_data:

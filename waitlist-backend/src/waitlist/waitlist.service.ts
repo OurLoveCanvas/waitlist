@@ -9,7 +9,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class WaitlistService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async join(email: string) {
+  async join(email: string, ipAddress?: string) {
     const existing = await this.prisma.waitlist.findUnique({
       where: { email },
     });
@@ -20,11 +20,18 @@ export class WaitlistService {
 
     try {
       return await this.prisma.waitlist.create({
-        data: { email },
+        data: { email, ipAddress },
         select: { id: true, email: true, createdAt: true },
       });
     } catch {
       throw new InternalServerErrorException('Could not save your email. Please try again.');
     }
+  }
+
+  async findAll() {
+    return this.prisma.waitlist.findMany({
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, email: true, ipAddress: true, createdAt: true },
+    });
   }
 }

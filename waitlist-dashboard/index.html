@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OurLoveCanvas — Waitlist Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f13;
+      --surface: #1a1a22;
+      --border: #2a2a38;
+      --pink: #D4688A;
+      --pink-hover: #BF5A7A;
+      --green: #4ade80;
+      --text: #e8e8f0;
+      --muted: #7a7a9a;
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── GATE ── */
+    #gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gate-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .gate-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--pink);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .gate-logo svg { width: 24px; height: 24px; fill: white; }
+
+    .gate-card h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .gate-card p {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 28px;
+    }
+
+    .gate-card input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+
+    .gate-card input:focus { border-color: var(--pink); }
+
+    .gate-card button {
+      width: 100%;
+      background: var(--pink);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .gate-card button:hover { background: var(--pink-hover); }
+
+    .gate-error {
+      color: #f87171;
+      font-size: 0.82rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* ── DASHBOARD ── */
+    #app { display: none; }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topbar-logo {
+      width: 32px;
+      height: 32px;
+      background: var(--pink);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topbar-logo svg { width: 16px; height: 16px; fill: white; }
+
+    .topbar-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-refresh {
+      background: var(--border);
+      border: none;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-refresh:hover { background: #38384a; }
+
+    .btn-logout {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover { border-color: #f87171; color: #f87171; }
+
+    .main { padding: 32px; }
+
+    /* ── STATS ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .stat-value.pink { color: var(--pink); }
+    .stat-value.green { color: var(--green); }
+
+    /* ── TABLE ── */
+    .table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .table-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .search-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      width: 220px;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus { border-color: var(--pink); }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 12px 24px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+    td {
+      padding: 14px 24px;
+      font-size: 0.875rem;
+    }
+
+    .td-id { color: var(--muted); font-size: 0.8rem; }
+
+    .td-email { font-weight: 500; }
+
+    .td-ip {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .ip-lookup {
+      background: none;
+      border: none;
+      color: var(--pink);
+      font-size: 0.75rem;
+      cursor: pointer;
+      margin-left: 6px;
+      text-decoration: underline;
+    }
+
+    .td-date { color: var(--muted); font-size: 0.82rem; }
+
+    /* ── EMPTY / LOADING ── */
+    .state-row td {
+      text-align: center;
+      padding: 48px;
+      color: var(--muted);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--pink);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- ── GATE ── -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-logo">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+    <h1>Waitlist Dashboard</h1>
+    <p>OurLoveCanvas yönetim paneline giriş yapın</p>
+    <input type="password" id="api-key-input" placeholder="API anahtarınızı girin" />
+    <button onclick="login()">Giriş Yap</button>
+    <div class="gate-error" id="gate-error">Hatalı API anahtarı. Lütfen tekrar deneyin.</div>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="topbar-logo">
+        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </div>
+      <span class="topbar-title">OurLoveCanvas — Waitlist</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-refresh" onclick="loadData()">Yenile</button>
+      <button class="btn-logout" onclick="logout()">Çıkış</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Toplam Kayıt</div>
+        <div class="stat-value pink" id="stat-total">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Son 7 Gün</div>
+        <div class="stat-value green" id="stat-week">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Bugün</div>
+        <div class="stat-value" id="stat-today">—</div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-header">
+        <h2>Kayıtlar</h2>
+        <input class="search-box" type="text" placeholder="E-posta ara…" oninput="filterTable(this.value)" />
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>E-posta</th>
+              <th>IP Adresi</th>
+              <th>Kayıt Tarihi</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr class="state-row"><td colspan="4"><span class="spinner"></span>Yükleniyor…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API = 'https://api.ourlovecanvas.com/waitlist';
+  let allEntries = [];
+
+  function getKey() { return localStorage.getItem('olc_dashboard_key'); }
+
+  function setKey(k) { localStorage.setItem('olc_dashboard_key', k); }
+
+  function logout() {
+    localStorage.removeItem('olc_dashboard_key');
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('gate').style.display = 'flex';
+    document.getElementById('api-key-input').value = '';
+  }
+
+  async function login() {
+    const key = document.getElementById('api-key-input').value.trim();
+    if (!key) return;
+    setKey(key);
+    const ok = await loadData();
+    if (ok) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      document.getElementById('gate-error').style.display = 'none';
+    } else {
+      localStorage.removeItem('olc_dashboard_key');
+      document.getElementById('gate-error').style.display = 'block';
+    }
+  }
+
+  async function loadData() {
+    const key = getKey();
+    if (!key) return false;
+
+    try {
+      const res = await fetch(API, { headers: { 'x-api-key': key } });
+      if (res.status === 401) return false;
+      const json = await res.json();
+      allEntries = json.data || [];
+      renderTable(allEntries);
+      renderStats(allEntries);
+      return true;
+    } catch {
+      renderError();
+      return false;
+    }
+  }
+
+  function renderStats(entries) {
+    const now = new Date();
+    const today = entries.filter(e => {
+      const d = new Date(e.createdAt);
+      return d.toDateString() === now.toDateString();
+    }).length;
+    const week = entries.filter(e => {
+      const d = new Date(e.createdAt);
+      return (now - d) < 7 * 24 * 60 * 60 * 1000;
+    }).length;
+
+    document.getElementById('stat-total').textContent = entries.length;
+    document.getElementById('stat-week').textContent = week;
+    document.getElementById('stat-today').textContent = today;
+  }
+
+  function renderTable(entries) {
+    const tbody = document.getElementById('table-body');
+    if (!entries.length) {
+      tbody.innerHTML = '<tr class="state-row"><td colspan="4">Henüz kayıt yok.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = entries.map(e => `
+      <tr>
+        <td class="td-id">${e.id}</td>
+        <td class="td-email">${escHtml(e.email)}</td>
+        <td class="td-ip">
+          ${e.ipAddress ? escHtml(e.ipAddress) : '<span style="color:var(--muted)">—</span>'}
+          ${e.ipAddress ? `<button class="ip-lookup" onclick="lookupIp('${escHtml(e.ipAddress)}')">sorgula</button>` : ''}
+        </td>
+        <td class="td-date">${formatDate(e.createdAt)}</td>
+      </tr>
+    `).join('');
+  }
+
+  function renderError() {
+    document.getElementById('table-body').innerHTML =
+      '<tr class="state-row"><td colspan="4" style="color:#f87171">Veri yüklenemedi.</td></tr>';
+  }
+
+  function filterTable(q) {
+    const filtered = q
+      ? allEntries.filter(e => e.email.toLowerCase().includes(q.toLowerCase()))
+      : allEntries;
+    renderTable(filtered);
+  }
+
+  function lookupIp(ip) {
+    window.open('https://ipinfo.io/' + encodeURIComponent(ip), '_blank');
+  }
+
+  function formatDate(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+      + ' ' + d.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Auto-login if key is stored
+  (async () => {
+    if (getKey()) {
+      const ok = await loadData();
+      if (ok) {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+      } else {
+        localStorage.removeItem('olc_dashboard_key');
+      }
+    }
+  })();
+
+  // Enter key to login
+  document.getElementById('api-key-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') login();
+  });
+</script>
+</body>
+</html>

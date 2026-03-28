@@ -144,7 +144,8 @@
        HERO
     ============================================================ */
       .hero {
-        height: calc(100vh - 70px);
+        min-height: calc(100vh - 70px);
+        min-height: calc(100dvh - 70px);
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
@@ -855,23 +856,11 @@
       /* ============================================================
        RESPONSIVE
     ============================================================ */
-      @media (min-width: 1101px) {
-        body {
-          overflow: hidden;
-          height: 100vh;
-        }
-      }
-
       @media (max-width: 1100px) {
-        body {
-          overflow-y: auto;
-          height: auto;
-        }
         .hero {
           grid-template-columns: 1fr;
           padding: 60px 48px;
           min-height: auto;
-          height: auto;
           gap: 52px;
         }
         .hero-right {
@@ -891,64 +880,161 @@
 
       @media (max-width: 768px) {
         header {
-          padding: 0 24px;
+          padding: 0 20px;
+          height: 60px;
         }
         nav a.nav-link {
           display: none;
         }
         .hero {
-          padding: 48px 24px 64px;
+          padding: 36px 20px 56px;
+          gap: 40px;
+        }
+        .hero-left {
+          gap: 22px;
+        }
+        .hero-title {
+          font-size: clamp(1.9rem, 7vw, 2.6rem);
+        }
+        .hero-subtitle {
+          font-size: 0.95rem;
+          max-width: 100%;
         }
         .hero-right {
-          overflow: hidden;
-          padding: 40px 20px;
+          padding: 30px 10px;
         }
         .email-row {
           flex-direction: column;
+          max-width: 100%;
         }
-        .email-row input[type='email'],
+        .email-row input[type='email'] {
+          width: 100%;
+          padding: 13px 18px;
+          font-size: 1rem;
+        }
         .email-row .btn-pink {
           width: 100%;
           justify-content: center;
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+        .alert {
+          max-width: 100%;
+        }
+        .social-proof {
+          font-size: 0.82rem;
         }
         .steps-grid {
           grid-template-columns: 1fr 1fr;
         }
         .section-steps,
         .section-cta {
-          padding: 64px 24px;
+          padding: 64px 20px;
         }
         .cta-email-row {
           flex-direction: column;
         }
-        .cta-email-row input[type='email'],
+        .cta-email-row input[type='email'] {
+          width: 100%;
+          padding: 13px 18px;
+          font-size: 1rem;
+        }
         .cta-email-row .btn-pink {
           width: 100%;
           justify-content: center;
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+        .cta-alert {
+          max-width: 100%;
         }
         footer {
           flex-direction: column;
           gap: 24px;
-          padding: 36px 24px;
+          padding: 36px 20px;
           text-align: center;
         }
         .footer-links {
           justify-content: center;
+          flex-wrap: wrap;
         }
         .preview-card {
-          width: 290px;
+          width: min(290px, 85vw);
+        }
+        .floater {
+          transform: scale(0.75);
+        }
+        .fl-heart-lg {
+          right: 8px;
+          top: 0;
+        }
+        .fl-heart-sm {
+          left: 0;
+          bottom: 48px;
+        }
+        .fl-star-1 {
+          left: 6px;
+        }
+        .fl-star-2 {
+          right: 6px;
+        }
+        .fl-ring {
+          left: 24px;
         }
       }
 
       @media (max-width: 480px) {
+        .hero {
+          padding: 28px 16px 48px;
+          gap: 32px;
+        }
+        .hero-left {
+          gap: 18px;
+        }
+        .hero-title {
+          font-size: clamp(1.7rem, 8vw, 2.2rem);
+        }
+        .hero-subtitle {
+          font-size: 0.9rem;
+          line-height: 1.65;
+        }
+        .badge {
+          font-size: 0.7rem;
+          padding: 5px 14px;
+        }
         .steps-grid {
           grid-template-columns: 1fr;
         }
+        .preview-card {
+          width: min(270px, 82vw);
+        }
+        .hero-right {
+          padding: 24px 4px;
+        }
+        .section-steps,
+        .section-cta {
+          padding: 52px 16px;
+        }
+        header {
+          padding: 0 16px;
+        }
+        footer {
+          padding: 32px 16px;
+        }
+      }
+
+      @media (max-width: 360px) {
         .hero-title {
-          font-size: 2.3rem;
+          font-size: 1.6rem;
         }
         .preview-card {
-          width: 270px;
+          width: min(250px, 80vw);
+        }
+        .pc-header {
+          padding: 24px 20px 18px;
+        }
+        .pc-body {
+          padding: 16px 18px 18px;
         }
       }
       /* ============================================================
@@ -985,7 +1071,82 @@
         }
       }
 
+      /* Shimmer effect for highlighted text */
+      @keyframes shimmer {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      /* Gentle glow pulse for CTA button */
+      @keyframes glowPulse {
+        0%,
+        100% {
+          box-shadow: 0 4px 20px rgba(212, 104, 138, 0.32);
+        }
+        50% {
+          box-shadow: 0 6px 30px rgba(212, 104, 138, 0.5);
+        }
+      }
+
+      /* Subtle float for preview card */
+      @keyframes gentleFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      /* Avatar pop-in */
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0) translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* Badge subtle pulse */
+      @keyframes badgePulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(212, 104, 138, 0);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(212, 104, 138, 0.08);
+        }
+      }
+
+      /* Glow blob breathing */
+      @keyframes blobBreathe {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.7;
+          transform: scale(1.05);
+        }
+      }
+
       /* Initial hidden state — JS adds .anim-in to trigger each animation */
+
+      @keyframes forceShow {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
       header,
       .badge,
       .hero-title,
@@ -1000,7 +1161,9 @@
         animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
       .badge.anim-in {
-        animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation:
+          fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+          badgePulse 3s ease-in-out 1.5s infinite;
       }
       .hero-title.anim-in {
         animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -1018,6 +1181,56 @@
         animation: scaleIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
 
+      /* Shimmer on the italic "Beautiful" text after mount */
+      .hero-title.anim-in em {
+        background: linear-gradient(
+          90deg,
+          var(--pink) 0%,
+          #e8a0b4 40%,
+          #f0c8d5 50%,
+          #e8a0b4 60%,
+          var(--pink) 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 4s ease-in-out 1.2s infinite;
+      }
+
+      /* CTA button glow pulse after load */
+      .email-row.anim-in .btn-pink {
+        animation: glowPulse 3s ease-in-out 2s infinite;
+      }
+
+      /* Staggered avatar pop-in */
+      .social-proof.anim-in .av {
+        opacity: 0;
+        animation: popIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .social-proof.anim-in .av:nth-child(1) {
+        animation-delay: 0.75s;
+      }
+      .social-proof.anim-in .av:nth-child(2) {
+        animation-delay: 0.85s;
+      }
+      .social-proof.anim-in .av:nth-child(3) {
+        animation-delay: 0.95s;
+      }
+      .social-proof.anim-in .av:nth-child(4) {
+        animation-delay: 1.05s;
+      }
+
+      /* Gentle continuous float on preview card after entrance */
+      .hero-right.anim-in .preview-card {
+        animation: gentleFloat 5s ease-in-out 1s infinite;
+      }
+
+      /* Glow blob breathing */
+      .hero-right.anim-in::before {
+        animation: blobBreathe 6s ease-in-out infinite;
+      }
+
       .preview-card {
         transition:
           box-shadow 0.35s ease,
@@ -1030,6 +1243,43 @@
           0 18px 38px rgba(92, 30, 50, 0.1);
       }
 
+      /* Smooth transitions for interactive elements */
+      .logo-icon {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .logo:hover .logo-icon {
+        transform: scale(1.08);
+        box-shadow: 0 4px 14px rgba(212, 104, 138, 0.3);
+      }
+
+      .btn-pink {
+        transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .btn-outline {
+        transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .btn-outline:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(212, 104, 138, 0.2);
+      }
+
+      .step-card {
+        transition: all 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .footer-links a {
+        transition:
+          color 0.25s ease,
+          transform 0.25s ease;
+        display: inline-block;
+      }
+      .footer-links a:hover {
+        transform: translateY(-1px);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         header,
         .badge,
@@ -1040,6 +1290,18 @@
         .hero-right {
           opacity: 1 !important;
           animation: none !important;
+        }
+        .hero-title.anim-in em {
+          background: none !important;
+          -webkit-text-fill-color: var(--pink) !important;
+          animation: none !important;
+        }
+        .email-row.anim-in .btn-pink,
+        .hero-right.anim-in .preview-card,
+        .hero-right.anim-in::before,
+        .social-proof.anim-in .av {
+          animation: none !important;
+          opacity: 1 !important;
         }
         .floater {
           animation: none;
@@ -1307,23 +1569,46 @@
     <script>
       /* ── On-mount entrance animations ── */
       (function () {
-        var sequence = [
+        const sequence = [
           { sel: 'header', delay: 0 },
-          { sel: '.badge', delay: 120 },
-          { sel: '.hero-right', delay: 200 },
-          { sel: '.hero-title', delay: 260 },
-          { sel: '.hero-subtitle', delay: 400 },
-          { sel: '.email-row', delay: 520 },
-          { sel: '.social-proof', delay: 640 },
+          { sel: '.badge', delay: 150 },
+          { sel: '.hero-right', delay: 250 },
+          { sel: '.hero-title', delay: 350 },
+          { sel: '.hero-subtitle', delay: 520 },
+          { sel: '.email-row', delay: 680 },
+          { sel: '.social-proof', delay: 830 },
         ];
-        document.addEventListener('DOMContentLoaded', function () {
-          sequence.forEach(function (item) {
-            var el = document.querySelector(item.sel);
-            if (el)
-              setTimeout(function () {
-                el.classList.add('anim-in');
-              }, item.delay);
+
+        function runAnimations() {
+          // requestAnimationFrame ile tarayıcının başlangıç stillerini ekrana çizmesini
+          // (paint etmesini) garantiye alıyoruz. Böylece animasyonlar aniden bitmiş gibi görünmez.
+          requestAnimationFrame(() => {
+            sequence.forEach((item) => {
+              const el = document.querySelector(item.sel);
+              if (el) {
+                setTimeout(() => {
+                  el.classList.add('anim-in');
+                }, item.delay);
+              }
+            });
           });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', runAnimations);
+        } else {
+          // Script body sonunda olduğu için DOMContentLoaded çoktan fire etmiş olabilir.
+          // Ufak bir gecikme ekleyerek sayfa yapısının tam hazır olmasını sağlıyoruz.
+          setTimeout(runAnimations, 50);
+        }
+
+        // Ekstra Güvenlik: Sayfa 'load' (tamamlanma) durumuna geldiğinde hala
+        // animasyonlar tetiklenmediyse (örn. cache sorunları), zorla çalıştır.
+        window.addEventListener('load', () => {
+          const header = document.querySelector('header');
+          if (header && !header.classList.contains('anim-in')) {
+            runAnimations();
+          }
         });
       })();
 

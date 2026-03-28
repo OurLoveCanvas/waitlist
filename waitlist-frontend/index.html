@@ -1,1139 +1,1410 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OurLoveCanvas — Create Beautiful Romantic Websites</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OurLoveCanvas — Create Beautiful Romantic Websites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* ============================================================
+    <style>
+      /* ============================================================
        RESET & ROOT
     ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    :root {
-      --bg:           #FDFAF7;
-      --bg-section:   #F8F1E8;
-      --pink:         #D4688A;
-      --pink-hover:   #BF5A7A;
-      --pink-soft:    #E8A0B4;
-      --pink-pale:    #FDF0F4;
-      --pink-border:  #F0C8D5;
-      --dark:         #1C1008;
-      --body:         #5A3E35;
-      --muted:        #9A8077;
-      --card-bg:      #FFFFFF;
-      --card-border:  #F0E8E0;
-      --serif:        'Playfair Display', Georgia, serif;
-      --sans:         'DM Sans', system-ui, -apple-system, sans-serif;
-    }
+      :root {
+        --bg: #fdfaf7;
+        --bg-section: #f8f1e8;
+        --pink: #d4688a;
+        --pink-hover: #bf5a7a;
+        --pink-soft: #e8a0b4;
+        --pink-pale: #fdf0f4;
+        --pink-border: #f0c8d5;
+        --dark: #1c1008;
+        --body: #5a3e35;
+        --muted: #9a8077;
+        --card-bg: #ffffff;
+        --card-border: #f0e8e0;
+        --serif: 'Playfair Display', Georgia, serif;
+        --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+      }
 
-    html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    body {
-      font-family: var(--sans);
-      background-color: var(--bg);
-      color: var(--body);
-      line-height: 1.6;
-      overflow: hidden;
-      height: 100vh;
-    }
+      body {
+        font-family: var(--sans);
+        background-color: var(--bg);
+        color: var(--body);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
 
-    /* ============================================================
+      /* ============================================================
        HEADER
     ============================================================ */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(253, 250, 247, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      /* border-bottom: 1px solid var(--card-border); */
-      padding: 0 60px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(253, 250, 247, 0.88);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        /* border-bottom: 1px solid var(--card-border); */
+        padding: 0 60px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
 
-    .logo-icon {
-      width: 34px;
-      height: 34px;
-      background: var(--pink);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+      .logo-icon {
+        width: 34px;
+        height: 34px;
+        background: var(--pink);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
 
-    .logo-icon svg { width: 18px; height: 18px; fill: white; }
+      .logo-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: white;
+      }
 
-    .logo-text {
-      font-family: var(--serif);
-      font-size: 1.18rem;
-      font-weight: 700;
-      color: var(--dark);
-    }
+      .logo-text {
+        font-family: var(--serif);
+        font-size: 1.18rem;
+        font-weight: 700;
+        color: var(--dark);
+      }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 36px;
-    }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
 
-    nav a.nav-link {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+      nav a.nav-link {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
 
-    nav a.nav-link:hover { color: var(--dark); }
+      nav a.nav-link:hover {
+        color: var(--dark);
+      }
 
-    .btn-outline {
-      padding: 9px 22px;
-      border: 1.5px solid var(--pink);
-      border-radius: 999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--pink);
-      background: transparent;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      font-family: var(--sans);
-      display: inline-flex;
-      align-items: center;
-    }
+      .btn-outline {
+        padding: 9px 22px;
+        border: 1.5px solid var(--pink);
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--pink);
+        background: transparent;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+        font-family: var(--sans);
+        display: inline-flex;
+        align-items: center;
+      }
 
-    .btn-outline:hover {
-      background: var(--pink);
-      color: white;
-    }
+      .btn-outline:hover {
+        background: var(--pink);
+        color: white;
+      }
 
-    /* ============================================================
+      /* ============================================================
        HERO
     ============================================================ */
-    .hero {
-      height: calc(100vh - 70px);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 60px;
-      padding: 40px 80px;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
+      .hero {
+        height: calc(100vh - 70px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 60px;
+        padding: 40px 80px;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--pink-pale);
-      border: 1px solid var(--pink-border);
-      border-radius: 999px;
-      padding: 6px 18px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--pink);
-      width: fit-content;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--pink-pale);
+        border: 1px solid var(--pink-border);
+        border-radius: 999px;
+        padding: 6px 18px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--pink);
+        width: fit-content;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
 
-    .badge::before { content: '✦'; font-size: 0.7rem; }
+      .badge::before {
+        content: '✦';
+        font-size: 0.7rem;
+      }
 
-    .hero-title {
-      font-family: var(--serif);
-      font-size: clamp(2.6rem, 4.2vw, 3.9rem);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.13;
-      letter-spacing: -0.025em;
-    }
+      .hero-title {
+        font-family: var(--serif);
+        font-size: clamp(2.6rem, 4.2vw, 3.9rem);
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.13;
+        letter-spacing: -0.025em;
+      }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--pink);
-    }
+      .hero-title em {
+        font-style: italic;
+        color: var(--pink);
+      }
 
-    .hero-subtitle {
-      font-size: 1.075rem;
-      color: var(--muted);
-      line-height: 1.72;
-      max-width: 460px;
-      font-weight: 400;
-    }
+      .hero-subtitle {
+        font-size: 1.075rem;
+        color: var(--muted);
+        line-height: 1.72;
+        max-width: 460px;
+        font-weight: 400;
+      }
 
-    /* Email form row */
-    .email-row {
-      display: flex;
-      gap: 10px;
-      max-width: 500px;
-    }
+      /* Email form row */
+      .email-row {
+        display: flex;
+        gap: 10px;
+        max-width: 500px;
+      }
 
-    .email-row input[type="email"] {
-      flex: 1;
-      padding: 14px 22px;
-      border: 1.5px solid var(--pink-border);
-      border-radius: 999px;
-      font-size: 0.935rem;
-      font-family: var(--sans);
-      color: var(--dark);
-      background: white;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+      .email-row input[type='email'] {
+        flex: 1;
+        padding: 14px 22px;
+        border: 1.5px solid var(--pink-border);
+        border-radius: 999px;
+        font-size: 0.935rem;
+        font-family: var(--sans);
+        color: var(--dark);
+        background: white;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
 
-    .email-row input[type="email"]::placeholder { color: #C4A49A; }
+      .email-row input[type='email']::placeholder {
+        color: #c4a49a;
+      }
 
-    .email-row input[type="email"]:focus {
-      border-color: var(--pink);
-      box-shadow: 0 0 0 4px rgba(212, 104, 138, 0.1);
-    }
+      .email-row input[type='email']:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(212, 104, 138, 0.1);
+      }
 
-    .btn-pink {
-      padding: 14px 28px;
-      background: var(--pink);
-      color: white;
-      border: none;
-      border-radius: 999px;
-      font-size: 0.935rem;
-      font-weight: 600;
-      font-family: var(--sans);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.22s;
-      box-shadow: 0 4px 20px rgba(212, 104, 138, 0.32);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
+      .btn-pink {
+        padding: 14px 28px;
+        background: var(--pink);
+        color: white;
+        border: none;
+        border-radius: 999px;
+        font-size: 0.935rem;
+        font-weight: 600;
+        font-family: var(--sans);
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.22s;
+        box-shadow: 0 4px 20px rgba(212, 104, 138, 0.32);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-    .btn-pink:hover:not(:disabled) {
-      background: var(--pink-hover);
-      box-shadow: 0 8px 30px rgba(212, 104, 138, 0.42);
-      transform: translateY(-2px);
-    }
+      .btn-pink:hover:not(:disabled) {
+        background: var(--pink-hover);
+        box-shadow: 0 8px 30px rgba(212, 104, 138, 0.42);
+        transform: translateY(-2px);
+      }
 
-    .btn-pink:active:not(:disabled) { transform: translateY(0); }
+      .btn-pink:active:not(:disabled) {
+        transform: translateY(0);
+      }
 
-    .btn-pink:disabled { opacity: 0.6; cursor: not-allowed; }
+      .btn-pink:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
 
-    /* Alert messages */
-    .alert {
-      padding: 12px 20px;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: none;
-      max-width: 500px;
-    }
+      /* Alert messages */
+      .alert {
+        padding: 12px 20px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: none;
+        max-width: 500px;
+      }
 
-    .alert.success {
-      display: block;
-      background: #F0FFF4;
-      color: #276749;
-      border: 1px solid #9AE6B4;
-    }
+      .alert.success {
+        display: block;
+        background: #f0fff4;
+        color: #276749;
+        border: 1px solid #9ae6b4;
+      }
 
-    .alert.error {
-      display: block;
-      background: #FFF5F5;
-      color: #C53030;
-      border: 1px solid #FEB2B2;
-    }
+      .alert.error {
+        display: block;
+        background: #fff5f5;
+        color: #c53030;
+        border: 1px solid #feb2b2;
+      }
 
-    /* Social proof */
-    .social-proof {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
+      /* Social proof */
+      .social-proof {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
 
-    .avatars {
-      display: flex;
-    }
+      .avatars {
+        display: flex;
+      }
 
-    .av {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 2px solid white;
-      margin-left: -9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      color: white;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
+      .av {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-left: -9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        color: white;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
 
-    .av:first-child { margin-left: 0; }
-    .av:nth-child(1) { background: #E8A0B4; }
-    .av:nth-child(2) { background: #C97186; }
-    .av:nth-child(3) { background: #F0B8C8; }
-    .av:nth-child(4) { background: #D4688A; }
+      .av:first-child {
+        margin-left: 0;
+      }
+      .av:nth-child(1) {
+        background: #e8a0b4;
+      }
+      .av:nth-child(2) {
+        background: #c97186;
+      }
+      .av:nth-child(3) {
+        background: #f0b8c8;
+      }
+      .av:nth-child(4) {
+        background: #d4688a;
+      }
 
-    /* ============================================================
+      /* ============================================================
        HERO RIGHT — MOCKUP
     ============================================================ */
-    .hero-right {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px;
-    }
+      .hero-right {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px;
+      }
 
-    /* Glow blob */
-    .hero-right::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232, 160, 180, 0.2) 0%, transparent 70%);
-      pointer-events: none;
-    }
+      /* Glow blob */
+      .hero-right::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 60% at 50% 50%,
+          rgba(232, 160, 180, 0.2) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
 
-    /* Floating decorative elements */
-    .floater {
-      position: absolute;
-      pointer-events: none;
-      z-index: 4;
-    }
+      /* Floating decorative elements */
+      .floater {
+        position: absolute;
+        pointer-events: none;
+        z-index: 4;
+      }
 
-    .fl-heart-lg {
-      top: 8px;
-      right: 24px;
-      animation: fl1 4.2s ease-in-out infinite;
-    }
+      .fl-heart-lg {
+        top: 8px;
+        right: 24px;
+        animation: fl1 4.2s ease-in-out infinite;
+      }
 
-    .fl-heart-sm {
-      bottom: 64px;
-      left: 16px;
-      animation: fl2 5.1s ease-in-out infinite;
-    }
+      .fl-heart-sm {
+        bottom: 64px;
+        left: 16px;
+        animation: fl2 5.1s ease-in-out infinite;
+      }
 
-    .fl-star-1 {
-      top: 64px;
-      left: 22px;
-      animation: fl3 3.7s ease-in-out infinite;
-    }
+      .fl-star-1 {
+        top: 64px;
+        left: 22px;
+        animation: fl3 3.7s ease-in-out infinite;
+      }
 
-    .fl-star-2 {
-      bottom: 28px;
-      right: 20px;
-      animation: fl1 4.8s ease-in-out infinite;
-    }
+      .fl-star-2 {
+        bottom: 28px;
+        right: 20px;
+        animation: fl1 4.8s ease-in-out infinite;
+      }
 
-    .fl-ring {
-      top: -8px;
-      left: 52px;
-      animation: fl2 6.5s ease-in-out infinite;
-    }
+      .fl-ring {
+        top: -8px;
+        left: 52px;
+        animation: fl2 6.5s ease-in-out infinite;
+      }
 
-    @keyframes fl1 {
-      0%, 100% { transform: translateY(0)   rotate(0deg); }
-      50%       { transform: translateY(-14px) rotate(6deg); }
-    }
-    @keyframes fl2 {
-      0%, 100% { transform: translateY(0)   rotate(0deg); }
-      50%       { transform: translateY(-9px) rotate(-6deg); }
-    }
-    @keyframes fl3 {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50%       { transform: translateY(-11px) scale(1.06); }
-    }
+      @keyframes fl1 {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-14px) rotate(6deg);
+        }
+      }
+      @keyframes fl2 {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-9px) rotate(-6deg);
+        }
+      }
+      @keyframes fl3 {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-11px) scale(1.06);
+        }
+      }
 
-    /* Preview card */
-    .preview-card {
-      position: relative;
-      z-index: 2;
-      width: 340px;
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid var(--card-border);
-      box-shadow:
-        0 40px 90px rgba(92, 30, 50, 0.15),
-        0 12px 28px rgba(92, 30, 50, 0.07);
-    }
+      /* Preview card */
+      .preview-card {
+        position: relative;
+        z-index: 2;
+        width: 340px;
+        background: white;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--card-border);
+        box-shadow:
+          0 40px 90px rgba(92, 30, 50, 0.15),
+          0 12px 28px rgba(92, 30, 50, 0.07);
+      }
 
-    .pc-header {
-      background: linear-gradient(135deg, #F9E8EF 0%, #FDF3F7 100%);
-      padding: 30px 28px 22px;
-      text-align: center;
-      position: relative;
-    }
+      .pc-header {
+        background: linear-gradient(135deg, #f9e8ef 0%, #fdf3f7 100%);
+        padding: 30px 28px 22px;
+        text-align: center;
+        position: relative;
+      }
 
-    .pc-dots {
-      display: flex;
-      gap: 6px;
-      position: absolute;
-      top: 13px;
-      left: 15px;
-    }
+      .pc-dots {
+        display: flex;
+        gap: 6px;
+        position: absolute;
+        top: 13px;
+        left: 15px;
+      }
 
-    .pc-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-    }
+      .pc-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+      }
 
-    .pc-dot:nth-child(1) { background: #FFB3B3; }
-    .pc-dot:nth-child(2) { background: #FFD6A0; }
-    .pc-dot:nth-child(3) { background: #B3F0C0; }
+      .pc-dot:nth-child(1) {
+        background: #ffb3b3;
+      }
+      .pc-dot:nth-child(2) {
+        background: #ffd6a0;
+      }
+      .pc-dot:nth-child(3) {
+        background: #b3f0c0;
+      }
 
-    .pc-emoji { font-size: 2.1rem; margin-bottom: 8px; }
+      .pc-emoji {
+        font-size: 2.1rem;
+        margin-bottom: 8px;
+      }
 
-    .pc-title {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 3px;
-    }
+      .pc-title {
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 3px;
+      }
 
-    .pc-tagline { font-size: 0.74rem; color: var(--muted); }
+      .pc-tagline {
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
 
-    /* Illustration area */
-    .pc-illustration {
-      height: 148px;
-      background: linear-gradient(155deg, #F2D6E0 0%, #E8C5D5 45%, #F8DDE5 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+      /* Illustration area */
+      .pc-illustration {
+        height: 148px;
+        background: linear-gradient(
+          155deg,
+          #f2d6e0 0%,
+          #e8c5d5 45%,
+          #f8dde5 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
 
-    /* Body of card */
-    .pc-body {
-      padding: 20px 24px 22px;
-    }
+      /* Body of card */
+      .pc-body {
+        padding: 20px 24px 22px;
+      }
 
-    .pc-quote {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 16px;
-      font-style: italic;
-    }
+      .pc-quote {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 16px;
+        font-style: italic;
+      }
 
-    .pc-url-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg);
-      border: 1px solid var(--card-border);
-      border-radius: 9px;
-      padding: 9px 13px;
-    }
+      .pc-url-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--bg);
+        border: 1px solid var(--card-border);
+        border-radius: 9px;
+        padding: 9px 13px;
+      }
 
-    .pc-url-bar svg { width: 12px; height: 12px; fill: var(--pink-soft); flex-shrink: 0; }
+      .pc-url-bar svg {
+        width: 12px;
+        height: 12px;
+        fill: var(--pink-soft);
+        flex-shrink: 0;
+      }
 
-    .pc-url-text {
-      font-size: 0.72rem;
-      color: var(--pink);
-      font-weight: 500;
-      font-family: 'Courier New', monospace;
-    }
+      .pc-url-text {
+        font-size: 0.72rem;
+        color: var(--pink);
+        font-weight: 500;
+        font-family: 'Courier New', monospace;
+      }
 
-    /* ============================================================
+      /* ============================================================
        HOW IT WORKS — removed
     ============================================================ */
-    .section-steps {
-      background: var(--bg-section);
-      padding: 104px 80px;
-    }
+      .section-steps {
+        background: var(--bg-section);
+        padding: 104px 80px;
+      }
 
-    .section-inner { max-width: 1300px; margin: 0 auto; }
+      .section-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
 
-    .section-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      border: 1px solid var(--pink-border);
-      border-radius: 999px;
-      padding: 5px 16px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--pink);
-      margin-bottom: 20px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
+      .section-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: white;
+        border: 1px solid var(--pink-border);
+        border-radius: 999px;
+        padding: 5px 16px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--pink);
+        margin-bottom: 20px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
 
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.9rem, 3vw, 2.9rem);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.18;
-      margin-bottom: 14px;
-      letter-spacing: -0.022em;
-    }
+      .section-title {
+        font-family: var(--serif);
+        font-size: clamp(1.9rem, 3vw, 2.9rem);
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.18;
+        margin-bottom: 14px;
+        letter-spacing: -0.022em;
+      }
 
-    .section-subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.72;
-      margin-bottom: 60px;
-    }
+      .section-subtitle {
+        font-size: 1rem;
+        color: var(--muted);
+        max-width: 500px;
+        line-height: 1.72;
+        margin-bottom: 60px;
+      }
 
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-    }
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+      }
 
-    .step-card {
-      background: white;
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 28px 22px 26px;
-      transition: all 0.28s ease;
-      position: relative;
-      overflow: hidden;
-    }
+      .step-card {
+        background: white;
+        border: 1px solid var(--card-border);
+        border-radius: 20px;
+        padding: 28px 22px 26px;
+        transition: all 0.28s ease;
+        position: relative;
+        overflow: hidden;
+      }
 
-    .step-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--pink-soft), var(--pink));
-      opacity: 0;
-      transition: opacity 0.28s;
-    }
+      .step-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--pink-soft), var(--pink));
+        opacity: 0;
+        transition: opacity 0.28s;
+      }
 
-    .step-card:hover {
-      border-color: var(--pink-border);
-      box-shadow: 0 14px 44px rgba(212, 104, 138, 0.13);
-      transform: translateY(-5px);
-    }
+      .step-card:hover {
+        border-color: var(--pink-border);
+        box-shadow: 0 14px 44px rgba(212, 104, 138, 0.13);
+        transform: translateY(-5px);
+      }
 
-    .step-card:hover::after { opacity: 1; }
+      .step-card:hover::after {
+        opacity: 1;
+      }
 
-    .step-num {
-      font-family: var(--serif);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--pink-soft);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
+      .step-num {
+        font-family: var(--serif);
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--pink-soft);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
 
-    .step-icon {
-      width: 46px;
-      height: 46px;
-      background: var(--pink-pale);
-      border-radius: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
+      .step-icon {
+        width: 46px;
+        height: 46px;
+        background: var(--pink-pale);
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+      }
 
-    .step-icon svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--pink);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+      .step-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--pink);
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
 
-    .step-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 9px;
-      line-height: 1.3;
-    }
+      .step-title {
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 9px;
+        line-height: 1.3;
+      }
 
-    .step-desc {
-      font-size: 0.825rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+      .step-desc {
+        font-size: 0.825rem;
+        color: var(--muted);
+        line-height: 1.65;
+      }
 
-    /* ============================================================
+      /* ============================================================
        CTA SECTION
     ============================================================ */
-    .section-cta {
-      padding: 108px 80px;
-      text-align: center;
-    }
+      .section-cta {
+        padding: 108px 80px;
+        text-align: center;
+      }
 
-    .cta-inner { max-width: 600px; margin: 0 auto; }
+      .cta-inner {
+        max-width: 600px;
+        margin: 0 auto;
+      }
 
-    .cta-title {
-      font-family: var(--serif);
-      font-size: clamp(2.1rem, 3.5vw, 3.1rem);
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.18;
-      margin-bottom: 18px;
-      letter-spacing: -0.022em;
-    }
+      .cta-title {
+        font-family: var(--serif);
+        font-size: clamp(2.1rem, 3.5vw, 3.1rem);
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.18;
+        margin-bottom: 18px;
+        letter-spacing: -0.022em;
+      }
 
-    .cta-title em { font-style: italic; color: var(--pink); }
+      .cta-title em {
+        font-style: italic;
+        color: var(--pink);
+      }
 
-    .cta-subtitle {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 44px;
-      line-height: 1.72;
-    }
+      .cta-subtitle {
+        font-size: 1rem;
+        color: var(--muted);
+        margin-bottom: 44px;
+        line-height: 1.72;
+      }
 
-    .cta-email-row {
-      display: flex;
-      gap: 10px;
-      max-width: 470px;
-      margin: 0 auto 14px;
-    }
+      .cta-email-row {
+        display: flex;
+        gap: 10px;
+        max-width: 470px;
+        margin: 0 auto 14px;
+      }
 
-    .cta-email-row input[type="email"] {
-      flex: 1;
-      padding: 14px 22px;
-      border: 1.5px solid var(--pink-border);
-      border-radius: 999px;
-      font-size: 0.935rem;
-      font-family: var(--sans);
-      color: var(--dark);
-      background: white;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+      .cta-email-row input[type='email'] {
+        flex: 1;
+        padding: 14px 22px;
+        border: 1.5px solid var(--pink-border);
+        border-radius: 999px;
+        font-size: 0.935rem;
+        font-family: var(--sans);
+        color: var(--dark);
+        background: white;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
 
-    .cta-email-row input[type="email"]::placeholder { color: #C4A49A; }
+      .cta-email-row input[type='email']::placeholder {
+        color: #c4a49a;
+      }
 
-    .cta-email-row input[type="email"]:focus {
-      border-color: var(--pink);
-      box-shadow: 0 0 0 4px rgba(212, 104, 138, 0.1);
-    }
+      .cta-email-row input[type='email']:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px rgba(212, 104, 138, 0.1);
+      }
 
-    .cta-alert {
-      padding: 12px 20px;
-      border-radius: 14px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      display: none;
-      max-width: 470px;
-      margin: 0 auto 14px;
-      text-align: left;
-    }
+      .cta-alert {
+        padding: 12px 20px;
+        border-radius: 14px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: none;
+        max-width: 470px;
+        margin: 0 auto 14px;
+        text-align: left;
+      }
 
-    .cta-alert.success {
-      display: block;
-      background: #F0FFF4;
-      color: #276749;
-      border: 1px solid #9AE6B4;
-    }
+      .cta-alert.success {
+        display: block;
+        background: #f0fff4;
+        color: #276749;
+        border: 1px solid #9ae6b4;
+      }
 
-    .cta-alert.error {
-      display: block;
-      background: #FFF5F5;
-      color: #C53030;
-      border: 1px solid #FEB2B2;
-    }
+      .cta-alert.error {
+        display: block;
+        background: #fff5f5;
+        color: #c53030;
+        border: 1px solid #feb2b2;
+      }
 
-    .cta-note { font-size: 0.8rem; color: var(--muted); }
+      .cta-note {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
 
-    /* ============================================================
+      /* ============================================================
        FOOTER
     ============================================================ */
-    footer {
-      background: var(--dark);
-      padding: 50px 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+      footer {
+        background: var(--dark);
+        padding: 50px 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
 
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-    .footer-logo-icon {
-      width: 30px;
-      height: 30px;
-      background: var(--pink);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      .footer-logo-icon {
+        width: 30px;
+        height: 30px;
+        background: var(--pink);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-    .footer-logo-icon svg { width: 15px; height: 15px; fill: white; }
+      .footer-logo-icon svg {
+        width: 15px;
+        height: 15px;
+        fill: white;
+      }
 
-    .footer-logo-text {
-      font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 700;
-      color: white;
-    }
+      .footer-logo-text {
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+      }
 
-    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.38); }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.38);
+      }
 
-    .footer-links {
-      display: flex;
-      gap: 28px;
-    }
+      .footer-links {
+        display: flex;
+        gap: 28px;
+      }
 
-    .footer-links a {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.38);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+      .footer-links a {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.38);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
 
-    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+      .footer-links a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
 
-    /* ============================================================
+      /* ============================================================
        SPINNER
     ============================================================ */
-    .spinner {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(255,255,255,0.35);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.65s linear infinite;
-    }
+      .spinner {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.65s linear infinite;
+      }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
-    /* ============================================================
+      /* ============================================================
        RESPONSIVE
     ============================================================ */
-    @media (max-width: 1100px) {
-      .hero { grid-template-columns: 1fr; padding: 60px 48px; min-height: auto; gap: 52px; }
-      .hero-right { justify-content: center; }
-      .steps-grid { grid-template-columns: repeat(3, 1fr); }
-      .section-steps, .section-cta { padding: 80px 48px; }
-      footer { padding: 44px 48px; }
-    }
+      @media (min-width: 1101px) {
+        body {
+          overflow: hidden;
+          height: 100vh;
+        }
+      }
 
-    @media (max-width: 768px) {
-      header { padding: 0 24px; }
-      nav a.nav-link { display: none; }
-      .hero { padding: 48px 24px; }
-      .email-row { flex-direction: column; }
-      .email-row input[type="email"], .email-row .btn-pink { width: 100%; justify-content: center; }
-      .steps-grid { grid-template-columns: 1fr 1fr; }
-      .section-steps, .section-cta { padding: 64px 24px; }
-      .cta-email-row { flex-direction: column; }
-      .cta-email-row input[type="email"], .cta-email-row .btn-pink { width: 100%; justify-content: center; }
-      footer { flex-direction: column; gap: 24px; padding: 36px 24px; text-align: center; }
-      .footer-links { justify-content: center; }
-      .preview-card { width: 300px; }
-    }
+      @media (max-width: 1100px) {
+        body {
+          overflow-y: auto;
+          height: auto;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 60px 48px;
+          min-height: auto;
+          height: auto;
+          gap: 52px;
+        }
+        .hero-right {
+          justify-content: center;
+        }
+        .steps-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .section-steps,
+        .section-cta {
+          padding: 80px 48px;
+        }
+        footer {
+          padding: 44px 48px;
+        }
+      }
 
-    @media (max-width: 480px) {
-      .steps-grid { grid-template-columns: 1fr; }
-      .hero-title { font-size: 2.3rem; }
-    }
-  </style>
-</head>
-<body>
+      @media (max-width: 768px) {
+        header {
+          padding: 0 24px;
+        }
+        nav a.nav-link {
+          display: none;
+        }
+        .hero {
+          padding: 48px 24px 64px;
+        }
+        .hero-right {
+          overflow: hidden;
+          padding: 40px 20px;
+        }
+        .email-row {
+          flex-direction: column;
+        }
+        .email-row input[type='email'],
+        .email-row .btn-pink {
+          width: 100%;
+          justify-content: center;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .section-steps,
+        .section-cta {
+          padding: 64px 24px;
+        }
+        .cta-email-row {
+          flex-direction: column;
+        }
+        .cta-email-row input[type='email'],
+        .cta-email-row .btn-pink {
+          width: 100%;
+          justify-content: center;
+        }
+        footer {
+          flex-direction: column;
+          gap: 24px;
+          padding: 36px 24px;
+          text-align: center;
+        }
+        .footer-links {
+          justify-content: center;
+        }
+        .preview-card {
+          width: 290px;
+        }
+      }
 
-  <!-- ==========================================
+      @media (max-width: 480px) {
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-title {
+          font-size: 2.3rem;
+        }
+        .preview-card {
+          width: 270px;
+        }
+      }
+      /* ============================================================
+       ENTRANCE ANIMATIONS
+    ============================================================ */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92) translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* Initial hidden state — JS adds .anim-in to trigger each animation */
+      header,
+      .badge,
+      .hero-title,
+      .hero-subtitle,
+      .email-row,
+      .social-proof,
+      .hero-right {
+        opacity: 0;
+      }
+
+      header.anim-in {
+        animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .badge.anim-in {
+        animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-title.anim-in {
+        animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-subtitle.anim-in {
+        animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .email-row.anim-in {
+        animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .social-proof.anim-in {
+        animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-right.anim-in {
+        animation: scaleIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .preview-card {
+        transition:
+          box-shadow 0.35s ease,
+          transform 0.35s ease;
+      }
+      .preview-card:hover {
+        transform: translateY(-7px);
+        box-shadow:
+          0 52px 100px rgba(92, 30, 50, 0.18),
+          0 18px 38px rgba(92, 30, 50, 0.1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        header,
+        .badge,
+        .hero-title,
+        .hero-subtitle,
+        .email-row,
+        .social-proof,
+        .hero-right {
+          opacity: 1 !important;
+          animation: none !important;
+        }
+        .floater {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ==========================================
        HEADER
   =========================================== -->
-  <header>
-    <a href="#" class="logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
-      </div>
-      <span class="logo-text">OurLoveCanvas</span>
-    </a>
+    <header>
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"
+            />
+          </svg>
+        </div>
+        <span class="logo-text">OurLoveCanvas</span>
+      </a>
+    </header>
 
-   
-  </header>
-
-
-  <!-- ==========================================
+    <!-- ==========================================
        HERO
   =========================================== -->
-  <section class="hero">
+    <section class="hero">
+      <!-- Left -->
+      <div class="hero-left">
+        <div class="badge">Now accepting early access</div>
 
-    <!-- Left -->
-    <div class="hero-left">
-      <div class="badge">Now accepting early access</div>
+        <h1 class="hero-title">
+          Create a <em>Beautiful</em><br />
+          Romantic Website<br />
+          for the One You Love
+        </h1>
 
-      <h1 class="hero-title">
-        Create a <em>Beautiful</em><br>
-        Romantic Website<br>
-        for the One You Love
-      </h1>
+        <p class="hero-subtitle">
+          Choose a template, add your memories and love letters, then share a
+          stunning personal page your partner will treasure forever.
+        </p>
 
-      <p class="hero-subtitle">
-        Choose a template, add your memories and love letters, then share a stunning personal page your partner will treasure forever.
-      </p>
+        <form class="email-row" id="heroForm" novalidate>
+          <input
+            type="email"
+            id="heroEmail"
+            placeholder="Enter your email address"
+            autocomplete="email"
+            required
+          />
+          <button type="submit" class="btn-pink" id="heroBtn">
+            Join the Waitlist
+          </button>
+        </form>
 
-      <form class="email-row" id="heroForm" novalidate>
-        <input type="email" id="heroEmail" placeholder="Enter your email address" autocomplete="email" required />
-        <button type="submit" class="btn-pink" id="heroBtn">Join the Waitlist</button>
-      </form>
+        <div class="alert" id="heroAlert"></div>
 
-      <div class="alert" id="heroAlert"></div>
-
-      <div class="social-proof">
-        <div class="avatars">
-          <div class="av">S</div>
-          <div class="av">A</div>
-          <div class="av">M</div>
-          <div class="av">J</div>
-        </div>
-        <span>♥&nbsp;&nbsp;326 romantics have already joined</span>
-      </div>
-    </div>
-
-    <!-- Right — floating preview card -->
-    <div class="hero-right">
-
-      <!-- Floating decorations -->
-      <div class="floater fl-heart-lg">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="#F0B8C8" opacity="0.85">
-          <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
-        </svg>
-      </div>
-
-      <div class="floater fl-heart-sm">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="#E8A0B4" opacity="0.75">
-          <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
-        </svg>
-      </div>
-
-      <div class="floater fl-star-1">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#D4688A" opacity="0.5">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-      </div>
-
-      <div class="floater fl-star-2">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="#E8A0B4" opacity="0.65">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-      </div>
-
-      <div class="floater fl-ring">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E8A0B4" stroke-width="1.5" opacity="0.65">
-          <circle cx="12" cy="12" r="9"/>
-          <circle cx="12" cy="12" r="4" fill="#FDF0F4" stroke="#E8A0B4" stroke-width="1.5"/>
-        </svg>
-      </div>
-
-      <!-- Preview card -->
-      <div class="preview-card">
-        <div class="pc-header">
-          <div class="pc-dots">
-            <div class="pc-dot"></div>
-            <div class="pc-dot"></div>
-            <div class="pc-dot"></div>
+        <div class="social-proof">
+          <div class="avatars">
+            <div class="av">S</div>
+            <div class="av">A</div>
+            <div class="av">M</div>
+            <div class="av">J</div>
           </div>
-          <div class="pc-emoji">🌹</div>
-          <div class="pc-title">Our Love Story</div>
-          <div class="pc-tagline">A page made just for you, my love</div>
+          <span>♥&nbsp;&nbsp;326 romantics have already joined</span>
         </div>
+      </div>
 
-        <!-- Romantic illustration -->
-        <div class="pc-illustration">
-          <svg width="220" height="148" viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Soft background circles -->
-            <circle cx="110" cy="74" r="58" fill="rgba(255,255,255,0.28)"/>
-            <circle cx="110" cy="74" r="36" fill="rgba(255,255,255,0.18)"/>
-
-            <!-- Person 1 (left) — head + body -->
-            <ellipse cx="88" cy="52" rx="9" ry="9" fill="#C97186"/>
-            <!-- hair wisps -->
-            <path d="M80 46 Q84 40 88 44 Q92 40 96 46" stroke="#A85A70" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M74 110 Q80 78 88 72 Q96 78 102 110" fill="#C97186"/>
-
-            <!-- Person 2 (right) — head + body -->
-            <ellipse cx="132" cy="50" rx="8" ry="8" fill="#B05E78"/>
-            <path d="M122 112 Q128 82 132 76 Q136 82 142 112" fill="#B05E78"/>
-
-            <!-- Joined hands / heart between them -->
-            <path d="M98 92 C98 87 103 84 110 89 C117 84 122 87 122 92 C122 99 110 108 110 108 C110 108 98 99 98 92Z" fill="#E8A0B4"/>
-
-            <!-- Small hearts floating -->
-            <path d="M110 34 C110 31.5 108 29 106 31 C104 29 102 31.5 102 34 C102 36.5 106 40 106 40 C106 40 110 36.5 110 34Z" fill="#F0B8C8" opacity="0.85"/>
-            <path d="M156 50 C156 48 154.5 46.5 153 48 C151.5 46.5 150 48 150 50 C150 52 153 55 153 55 C153 55 156 52 156 50Z" fill="#F0B8C8" opacity="0.7"/>
-            <path d="M68 46 C68 44 66.5 42.5 65 44 C63.5 42.5 62 44 62 46 C62 48 65 51 65 51 C65 51 68 48 68 46Z" fill="#F0B8C8" opacity="0.65"/>
-
-            <!-- Sparkle stars -->
-            <path d="M172 70 L173.2 73.2 L176.5 73.2 L174 75.2 L175 78.5 L172 76.5 L169 78.5 L170 75.2 L167.5 73.2 L170.8 73.2 Z" fill="#E8A0B4" opacity="0.55"/>
-            <path d="M42 72 L43 74.8 L46 74.8 L43.8 76.5 L44.5 79.5 L42 77.8 L39.5 79.5 L40.2 76.5 L38 74.8 L41 74.8 Z" fill="#E8A0B4" opacity="0.45"/>
-
-            <!-- Curved line connecting them at top (decorative arc) -->
-            <path d="M88 44 Q110 22 132 42" stroke="#F0B8C8" stroke-width="1.2" stroke-dasharray="3 3" fill="none" opacity="0.6"/>
+      <!-- Right — floating preview card -->
+      <div class="hero-right">
+        <!-- Floating decorations -->
+        <div class="floater fl-heart-lg">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="#F0B8C8"
+            opacity="0.85"
+          >
+            <path
+              d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"
+            />
           </svg>
         </div>
 
-        <!-- Card body -->
-        <div class="pc-body">
-          <p class="pc-quote">
-            "Every moment with you feels like a painting. You are my canvas, my colour, my everything…"
-          </p>
-          <div class="pc-url-bar">
-            <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
-            <span class="pc-url-text">1.john.ourlovecanvas.com</span>
+        <div class="floater fl-heart-sm">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="#E8A0B4"
+            opacity="0.75"
+          >
+            <path
+              d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"
+            />
+          </svg>
+        </div>
+
+        <div class="floater fl-star-1">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="#D4688A"
+            opacity="0.5"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            />
+          </svg>
+        </div>
+
+        <div class="floater fl-star-2">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="#E8A0B4"
+            opacity="0.65"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            />
+          </svg>
+        </div>
+
+        <div class="floater fl-ring">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#E8A0B4"
+            stroke-width="1.5"
+            opacity="0.65"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+              fill="#FDF0F4"
+              stroke="#E8A0B4"
+              stroke-width="1.5"
+            />
+          </svg>
+        </div>
+
+        <!-- Preview card -->
+        <div class="preview-card">
+          <div class="pc-header">
+            <div class="pc-dots">
+              <div class="pc-dot"></div>
+              <div class="pc-dot"></div>
+              <div class="pc-dot"></div>
+            </div>
+            <div class="pc-emoji">🌹</div>
+            <div class="pc-title">Our Love Story</div>
+            <div class="pc-tagline">A page made just for you, my love</div>
+          </div>
+
+          <!-- Romantic illustration -->
+          <div class="pc-illustration">
+            <svg
+              width="220"
+              height="148"
+              viewBox="0 0 220 148"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Soft background circles -->
+              <circle cx="110" cy="74" r="58" fill="rgba(255,255,255,0.28)" />
+              <circle cx="110" cy="74" r="36" fill="rgba(255,255,255,0.18)" />
+
+              <!-- Person 1 (left) — head + body -->
+              <ellipse cx="88" cy="52" rx="9" ry="9" fill="#C97186" />
+              <!-- hair wisps -->
+              <path
+                d="M80 46 Q84 40 88 44 Q92 40 96 46"
+                stroke="#A85A70"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <path d="M74 110 Q80 78 88 72 Q96 78 102 110" fill="#C97186" />
+
+              <!-- Person 2 (right) — head + body -->
+              <ellipse cx="132" cy="50" rx="8" ry="8" fill="#B05E78" />
+              <path
+                d="M122 112 Q128 82 132 76 Q136 82 142 112"
+                fill="#B05E78"
+              />
+
+              <!-- Joined hands / heart between them -->
+              <path
+                d="M98 92 C98 87 103 84 110 89 C117 84 122 87 122 92 C122 99 110 108 110 108 C110 108 98 99 98 92Z"
+                fill="#E8A0B4"
+              />
+
+              <!-- Small hearts floating -->
+              <path
+                d="M110 34 C110 31.5 108 29 106 31 C104 29 102 31.5 102 34 C102 36.5 106 40 106 40 C106 40 110 36.5 110 34Z"
+                fill="#F0B8C8"
+                opacity="0.85"
+              />
+              <path
+                d="M156 50 C156 48 154.5 46.5 153 48 C151.5 46.5 150 48 150 50 C150 52 153 55 153 55 C153 55 156 52 156 50Z"
+                fill="#F0B8C8"
+                opacity="0.7"
+              />
+              <path
+                d="M68 46 C68 44 66.5 42.5 65 44 C63.5 42.5 62 44 62 46 C62 48 65 51 65 51 C65 51 68 48 68 46Z"
+                fill="#F0B8C8"
+                opacity="0.65"
+              />
+
+              <!-- Sparkle stars -->
+              <path
+                d="M172 70 L173.2 73.2 L176.5 73.2 L174 75.2 L175 78.5 L172 76.5 L169 78.5 L170 75.2 L167.5 73.2 L170.8 73.2 Z"
+                fill="#E8A0B4"
+                opacity="0.55"
+              />
+              <path
+                d="M42 72 L43 74.8 L46 74.8 L43.8 76.5 L44.5 79.5 L42 77.8 L39.5 79.5 L40.2 76.5 L38 74.8 L41 74.8 Z"
+                fill="#E8A0B4"
+                opacity="0.45"
+              />
+
+              <!-- Curved line connecting them at top (decorative arc) -->
+              <path
+                d="M88 44 Q110 22 132 42"
+                stroke="#F0B8C8"
+                stroke-width="1.2"
+                stroke-dasharray="3 3"
+                fill="none"
+                opacity="0.6"
+              />
+            </svg>
+          </div>
+
+          <!-- Card body -->
+          <div class="pc-body">
+            <p class="pc-quote">
+              "Every moment with you feels like a painting. You are my canvas,
+              my colour, my everything…"
+            </p>
+            <div class="pc-url-bar">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"
+                />
+              </svg>
+              <span class="pc-url-text">1.john.ourlovecanvas.com</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <!-- HOW IT WORKS, CTA, FOOTER removed — hero only -->
-  <!--REMOVED_SECTIONS_START
-    <div class="section-inner">
-      <div class="section-badge">✦ How It Works</div>
-      <h2 class="section-title">From Idea to Love Story<br>in 5 Simple Steps</h2>
-      <p class="section-subtitle">Creating a romantic website for your partner has never been easier. No design skills needed — just your love.</p>
-
-      <div class="steps-grid">
-
-        <!-- Step 1 -->
-        <div class="step-card">
-          <div class="step-num">Step 01</div>
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-              <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-              <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-              <rect x="14" y="14" width="7" height="7" rx="1.5"/>
-            </svg>
-          </div>
-          <h3 class="step-title">Choose a Template</h3>
-          <p class="step-desc">Browse stunning romantic templates designed by professionals — each one crafted to tell a beautiful story.</p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="step-card">
-          <div class="step-num">Step 02</div>
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <polyline points="21 15 16 10 5 21"/>
-            </svg>
-          </div>
-          <h3 class="step-title">Add Your Content</h3>
-          <p class="step-desc">Upload your favourite photos together and write heartfelt messages, poems, or love letters.</p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="step-card">
-          <div class="step-num">Step 03</div>
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </div>
-          <h3 class="step-title">Preview It</h3>
-          <p class="step-desc">See exactly how your romantic website will look. Tweak and perfect every detail before sharing.</p>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="step-card">
-          <div class="step-num">Step 04</div>
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24">
-              <rect x="1" y="4" width="22" height="16" rx="2"/>
-              <line x1="1" y1="10" x2="23" y2="10"/>
-            </svg>
-          </div>
-          <h3 class="step-title">Purchase</h3>
-          <p class="step-desc">Unlock your page with a simple one-time payment. No subscriptions. No hidden fees. Just love.</p>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="step-card">
-          <div class="step-num">Step 05</div>
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="18" cy="5" r="3"/>
-              <circle cx="6" cy="12" r="3"/>
-              <circle cx="18" cy="19" r="3"/>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-            </svg>
-          </div>
-          <h3 class="step-title">Share the Love</h3>
-          <p class="step-desc">Send your partner a unique URL and watch their reaction as they discover their very own love page.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ==========================================
-       CTA SECTION
-  =========================================== -->
-  <section class="section-cta" id="cta">
-    <div class="cta-inner">
-      <div class="section-badge" style="margin: 0 auto 20px;">✦ Early Access</div>
-
-      <h2 class="cta-title">
-        Ready to Create<br>Something <em>Unforgettable?</em>
-      </h2>
-
-      <p class="cta-subtitle">
-        Join the waitlist today and be among the first to create a romantic website your partner will treasure forever.
-      </p>
-
-      <form class="cta-email-row" id="ctaForm" novalidate>
-        <input type="email" id="ctaEmail" placeholder="Enter your email address" autocomplete="email" required />
-        <button type="submit" class="btn-pink" id="ctaBtn">Join the Waitlist</button>
-      </form>
-
-      <div class="cta-alert" id="ctaAlert"></div>
-
-      <p class="cta-note">No spam, ever. Unsubscribe at any time. ♥</p>
-    </div>
-  </section>
-
-
-  <!-- ==========================================
-       FOOTER
-  =========================================== -->
-  <footer>
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <div class="footer-logo-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
-        </div>
-        <span class="footer-logo-text">OurLoveCanvas</span>
-      </div>
-      <p class="footer-copy">© 2026 OurLoveCanvas. Made with ♥</p>
-    </div>
-
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Contact</a>
-    </div>
-  REMOVED_SECTIONS_END-->
-
-
-  <!-- ==========================================
+    <!-- ==========================================
        JAVASCRIPT
   =========================================== -->
-  <script>
-    const API_URL = 'https://api.ourlovecanvas.com/waitlist';
-
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    function showAlert(el, text, type) {
-      el.textContent = text;
-      el.className = el.className.split(' ')[0] + ' ' + type;
-    }
-
-    function hideAlert(el) {
-      el.className = el.className.split(' ')[0];
-      el.textContent = '';
-    }
-
-    async function handleSubmit(emailId, btnId, alertId, formId) {
-      const emailEl = document.getElementById(emailId);
-      const btn     = document.getElementById(btnId);
-      const alertEl = document.getElementById(alertId);
-      const formEl  = document.getElementById(formId);
-      const email   = emailEl.value.trim();
-
-      hideAlert(alertEl);
-
-      if (!email) {
-        showAlert(alertEl, 'Please enter your email address.', 'error');
-        emailEl.focus();
-        return;
-      }
-
-      if (!isValidEmail(email)) {
-        showAlert(alertEl, 'Please enter a valid email address.', 'error');
-        emailEl.focus();
-        return;
-      }
-
-      const saved = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span> Joining…';
-
-      try {
-        const res  = await fetch(API_URL, {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ email }),
+    <script>
+      /* ── On-mount entrance animations ── */
+      (function () {
+        var sequence = [
+          { sel: 'header', delay: 0 },
+          { sel: '.badge', delay: 120 },
+          { sel: '.hero-right', delay: 200 },
+          { sel: '.hero-title', delay: 260 },
+          { sel: '.hero-subtitle', delay: 400 },
+          { sel: '.email-row', delay: 520 },
+          { sel: '.social-proof', delay: 640 },
+        ];
+        document.addEventListener('DOMContentLoaded', function () {
+          sequence.forEach(function (item) {
+            var el = document.querySelector(item.sel);
+            if (el)
+              setTimeout(function () {
+                el.classList.add('anim-in');
+              }, item.delay);
+          });
         });
-        const data = await res.json();
+      })();
 
-        if (res.ok) {
-          showAlert(alertEl, '🎉 You\'re on the list! We\'ll let you know when we launch.', 'success');
-          formEl.style.display = 'none';
-        } else {
-          const msg = Array.isArray(data?.message)
-            ? data.message[0]
-            : (data?.message || 'Something went wrong. Please try again.');
-          showAlert(alertEl, msg, 'error');
-        }
-      } catch {
-        showAlert(alertEl, 'Could not reach the server. Please check your connection.', 'error');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = saved;
+      const API_URL = 'https://api.ourlovecanvas.com/waitlist';
+
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       }
-    }
 
-    document.getElementById('heroForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      handleSubmit('heroEmail', 'heroBtn', 'heroAlert', 'heroForm');
-    });
+      function showAlert(el, text, type) {
+        el.textContent = text;
+        el.className = el.className.split(' ')[0] + ' ' + type;
+      }
 
-  </script>
-</body>
+      function hideAlert(el) {
+        el.className = el.className.split(' ')[0];
+        el.textContent = '';
+      }
+
+      async function handleSubmit(emailId, btnId, alertId, formId) {
+        const emailEl = document.getElementById(emailId);
+        const btn = document.getElementById(btnId);
+        const alertEl = document.getElementById(alertId);
+        const formEl = document.getElementById(formId);
+        const email = emailEl.value.trim();
+
+        hideAlert(alertEl);
+
+        if (!email) {
+          showAlert(alertEl, 'Please enter your email address.', 'error');
+          emailEl.focus();
+          return;
+        }
+
+        if (!isValidEmail(email)) {
+          showAlert(alertEl, 'Please enter a valid email address.', 'error');
+          emailEl.focus();
+          return;
+        }
+
+        const saved = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span> Joining…';
+
+        try {
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
+          });
+          const data = await res.json();
+
+          if (res.ok) {
+            showAlert(
+              alertEl,
+              "🎉 You're on the list! We'll let you know when we launch.",
+              'success',
+            );
+            formEl.style.display = 'none';
+          } else {
+            const msg = Array.isArray(data?.message)
+              ? data.message[0]
+              : data?.message || 'Something went wrong. Please try again.';
+            showAlert(alertEl, msg, 'error');
+          }
+        } catch {
+          showAlert(
+            alertEl,
+            'Could not reach the server. Please check your connection.',
+            'error',
+          );
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = saved;
+        }
+      }
+
+      document.getElementById('heroForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSubmit('heroEmail', 'heroBtn', 'heroAlert', 'heroForm');
+      });
+    </script>
+  </body>
 </html>

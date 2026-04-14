@@ -21,6 +21,6 @@ jobs:
             cd /srv/waitlists/OurLoveCanvas
             git pull origin main
             docker compose -f docker-compose.waitlist.yml build --no-cache waitlist-frontend waitlist-dashboard
-            docker compose -f docker-compose.waitlist.yml up -d --build
+            docker compose -f docker-compose.waitlist.yml up -d --build --remove-orphans
             docker image prune -f
           EOF

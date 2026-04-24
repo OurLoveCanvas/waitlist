@@ -72,13 +72,12 @@
        HEADER
     ============================================================ */
       header {
-        position: sticky;
         top: 0;
         z-index: 100;
         background: rgba(253, 250, 247, 0.88);
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
-        padding: 0 60px 0 20px;
+        padding: 0 60px 0 0px;
         height: 70px;
         display: flex;
         align-items: center;
@@ -89,10 +88,11 @@
 
       .logo {
         display: flex;
-        align-items: center;
+        justify-content: end;
         gap: 10px;
         text-decoration: none;
         margin-top: 20px;
+        margin-left: -50px;
       }
 
       .logo-img {

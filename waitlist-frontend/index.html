@@ -8,7 +8,7 @@
     />
     <title>OurLoveCanvas — Create Beautiful Romantic Websites</title>
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' ry='14' fill='%23fdf0f4'/%3E%3Cimage href='assets/favicon.png' x='4' y='4' width='56' height='56' clip-path='url(%23r)'/%3E%3CclipPath id='r'%3E%3Crect width='56' height='56' rx='10' ry='10'/%3E%3C/clipPath%3E%3C/svg%3E" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fdf0f4'/%3E%3Cg transform='translate(8,11) scale(2)'%3E%3Cpath d='M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z' fill='%23d4688a'/%3E%3C/g%3E%3C/svg%3E" />
     <link rel="icon" type="image/png" href="assets/favicon.png" sizes="any" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -78,12 +78,13 @@
         background: rgba(253, 250, 247, 0.88);
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
-        padding: 0 60px;
+        padding: 0 60px 0 20px;
         height: 70px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        flex-shrink: 0; /* Header'ın sıkışmasını/küçülmesini engeller */
+        flex-shrink: 0;
+        overflow: visible;
       }
 
       .logo {
@@ -91,10 +92,11 @@
         align-items: center;
         gap: 10px;
         text-decoration: none;
+        margin-top: 20px;
       }
 
       .logo-img {
-        height: 52px;
+        height: 230px;
         width: auto;
         display: block;
       }

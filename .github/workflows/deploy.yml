@@ -20,7 +20,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ekin@89.167.87.55 << 'EOF'
             cd /srv/waitlists/OurLoveCanvas
             git pull origin main
-            docker compose -f docker-compose.waitlist.yml build --no-cache waitlist-frontend waitlist-dashboard
-            docker compose -f docker-compose.waitlist.yml up -d --build --remove-orphans
+            docker compose -f docker-compose.waitlist.yml build --no-cache waitlist-frontend waitlist-dashboard waitlist-backend
+            docker compose -f docker-compose.waitlist.yml up -d --remove-orphans
             docker image prune -f
           EOF

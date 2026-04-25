@@ -317,7 +317,26 @@
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    .btn-excel {
+      background: #16a34a;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .btn-excel:hover { background: #15803d; }
+    .btn-excel svg { width: 15px; height: 15px; fill: white; flex-shrink: 0; }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
 
@@ -345,6 +364,10 @@
       <span class="topbar-title">OurLoveCanvas — Waitlist</span>
     </div>
     <div class="topbar-actions">
+      <button class="btn-excel" onclick="exportToExcel()">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 11h8v1H8v-1zm0 3h8v1H8v-1zm0 3h5v1H8v-1z"/></svg>
+        Excel'e Aktar
+      </button>
       <button class="btn-refresh" onclick="loadData()">Yenile</button>
       <button class="btn-logout" onclick="logout()">Çıkış</button>
     </div>
@@ -511,6 +534,26 @@
       }
     }
   })();
+
+  function exportToExcel() {
+    if (!allEntries.length) { alert('Dışa aktarılacak kayıt yok.'); return; }
+
+    const rows = allEntries.map(e => ({
+      'No': e.id,
+      'E-posta': e.email,
+      'IP Adresi': e.ipAddress || '',
+      'Kayıt Tarihi': formatDate(e.createdAt),
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws['!cols'] = [{ wch: 8 }, { wch: 36 }, { wch: 18 }, { wch: 20 }];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Waitlist');
+
+    const today = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(wb, `ourlovecanvas-waitlist-${today}.xlsx`);
+  }
 
   // Enter key to login
   document.getElementById('api-key-input').addEventListener('keydown', e => {
